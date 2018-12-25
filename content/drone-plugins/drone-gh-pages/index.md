@@ -69,6 +69,23 @@ steps:
     upstream_name: upstream
 ```
 
+Example configuration force pushing using a custom git remote target:
+
+```yaml
+kind: pipeline
+name: default
+
+steps:
+- name: publish  
+  image: plugins/gh-pages
+  settings:
+    username: octocat
+    password: p455w0rd
+    pages_directory: public/
+    upstream_name: https://github.com/octocat/octocat.github.io.git
+    force_push: true
+```
+
 # Parameter Reference
 
 username
@@ -85,6 +102,12 @@ upstream_name
 
 target_branch
 : GitHub target branch, defaults to `gh-pages`
+
+force_push
+: Force push to the branch, defaults to `false`
+
+follow_tags
+: Also push tags associated with commits being pushed, defaults to `false`
 
 temporary_base
 : Temporary directory to pull gh-pages branch, defaults to `.tmp`
